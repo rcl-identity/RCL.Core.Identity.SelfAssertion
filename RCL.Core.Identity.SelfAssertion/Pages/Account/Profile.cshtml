@@ -1,0 +1,46 @@
+﻿@page
+@model RCL.Core.Identity.SelfAssertion.Pages.Account.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="row mt-2 mb-5">
+    <div class="col-lg-8">
+        <div class="card shadow rounded">
+            <div class="card-header"><h3><i class="bi bi-person"></i> @ViewData["Title"]</h3></div>
+            <div class="card-body">
+                <div><strong>First Name</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.GivenName)</div>
+                <div><strong>Last Name</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.SurName)</div>
+                <div><strong>Display Name</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.DisplayName)</div>
+                <div><strong>Email</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.Email)</div>
+                <div><strong>Street Address</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.StreetAddress)</div>
+                <div><strong>City</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.City)</div>
+                <div><strong>State/Province</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.State)</div>
+                <div><strong>Postal Code</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.PostalCode)</div>
+                <div><strong>Country</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.Country)</div>
+                <div><strong>Id</strong></div>
+                <div>@Html.DisplayFor(model => model.UserData.ObjectId)</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card shadow rounded">
+            <div class="card-header"><h5>Do you want to edit your profile?</h5></div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <p><i class="bi bi-info-circle"></i> Click the button below to edit your profile</p>
+                    <a class="btn btn-primary" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="EditProfile"><i class="bi bi-pencil"></i> Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

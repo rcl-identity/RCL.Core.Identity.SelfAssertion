@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>32f2d695-e26b-4644-a179-213474a59d1a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.3" />
+    <PackageReference Include="RCL.Core.Identity.Tools" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>

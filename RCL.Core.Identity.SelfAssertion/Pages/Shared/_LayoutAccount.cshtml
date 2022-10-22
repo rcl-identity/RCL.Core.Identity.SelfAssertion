@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand p-1" asp-area="" asp-page="/Account/Index"> User</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Account/Profile">
+                        <i class="bi bi-person"></i> <span>Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Account/Password">
+                        <i class="bi bi-lock"></i> <span>Password</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Account/SecurityGroup">
+                        <i class="bi bi-people"></i> <span>Security Groups</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    @RenderBody()
+</div>
+
+@section scripts{
+    @RenderSection("scripts", required: false)
+}
