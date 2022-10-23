@@ -17,16 +17,31 @@
                 <div>@Html.DisplayFor(model => model.UserData.DisplayName)</div>
                 <div><strong>Email</strong></div>
                 <div>@Html.DisplayFor(model => model.UserData.Email)</div>
-                <div><strong>Street Address</strong></div>
-                <div>@Html.DisplayFor(model => model.UserData.StreetAddress)</div>
-                <div><strong>City</strong></div>
-                <div>@Html.DisplayFor(model => model.UserData.City)</div>
-                <div><strong>State/Province</strong></div>
-                <div>@Html.DisplayFor(model => model.UserData.State)</div>
-                <div><strong>Postal Code</strong></div>
-                <div>@Html.DisplayFor(model => model.UserData.PostalCode)</div>
-                <div><strong>Country</strong></div>
-                <div>@Html.DisplayFor(model => model.UserData.Country)</div>
+                @if (!string.IsNullOrEmpty(Model?.UserData?.StreetAddress))
+                {
+                    <div><strong>Street Address</strong></div>
+                    <div>@Html.DisplayFor(model => model.UserData.StreetAddress)</div>
+                }
+                @if (!string.IsNullOrEmpty(Model?.UserData?.City))
+                {
+                    <div><strong>City</strong></div>
+                    <div>@Html.DisplayFor(model => model.UserData.City)</div>
+                }
+                @if (!string.IsNullOrEmpty(Model?.UserData?.State))
+                {
+                    <div><strong>State/Province</strong></div>
+                    <div>@Html.DisplayFor(model => model.UserData.State)</div>
+                }
+                @if (!string.IsNullOrEmpty(Model?.UserData?.PostalCode))
+                {
+                    <div><strong>Postal Code</strong></div>
+                    <div>@Html.DisplayFor(model => model.UserData.PostalCode)</div>
+                }
+                @if (!string.IsNullOrEmpty(Model?.UserData?.Country))
+                {
+                    <div><strong>Country</strong></div>
+                    <div>@Html.DisplayFor(model => model.UserData.Country)</div>
+                }
                 <div><strong>Id</strong></div>
                 <div>@Html.DisplayFor(model => model.UserData.ObjectId)</div>
             </div>
