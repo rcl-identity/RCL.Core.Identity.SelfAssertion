@@ -24,10 +24,10 @@
                     <div><strong>Display Name</strong></div>
                     <div>@Html.DisplayFor(model => model.UserData.DisplayName)</div>
                 }
-                @if (Model?.UserData?.DateOfBirth != null)
+                @if (Model?.UserData.DateOfBirth.ToShortDateString() != "1/1/0001")
                 {
                     <div><strong>Date of Birth</strong></div>
-                    <div>@Html.DisplayFor(model => model.UserData.DateOfBirth)</div>
+                    <div>@Model?.UserData.DateOfBirth.ToLongDateString()</div>
                 }
                 @if (!string.IsNullOrEmpty(Model?.UserData?.Email))
                 {
