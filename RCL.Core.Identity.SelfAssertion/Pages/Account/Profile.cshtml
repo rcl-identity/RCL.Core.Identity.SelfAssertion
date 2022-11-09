@@ -9,6 +9,12 @@
         <div class="card shadow rounded">
             <div class="card-header"><h3><i class="bi bi-person"></i> @ViewData["Title"]</h3></div>
             <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model?.UserData?.PhotoUrl))
+                {
+                    <div class="mt-2 mb-2">
+                        <img height="100" src="@Model?.UserData?.PhotoUrl">
+                    </div>
+                }
                 @if (!string.IsNullOrEmpty(Model?.UserData?.GivenName))
                 {
                     <div><strong>First Name</strong></div>
@@ -68,6 +74,11 @@
                 {
                     <div><strong>Id</strong></div>
                     <div>@Html.DisplayFor(model => model.UserData.ObjectId)</div>
+                }
+                @if (Model?.UserData.DateCreated.ToShortDateString() != "1/1/0001")
+                {
+                    <div><strong>Date Created</strong></div>
+                    <div>@Model?.UserData.DateCreated.ToLongDateString()</div>
                 }
             </div>
         </div>

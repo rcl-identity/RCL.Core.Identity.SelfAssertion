@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.3" />
-    <PackageReference Include="RCL.Core.Identity.Tools" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.5" />
+    <PackageReference Include="RCL.Core.Identity.Tools" Version="7.0.1" />
   </ItemGroup>
 
 </Project>
