@@ -1,0 +1,100 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appServiceName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "appServicePlanName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "appServicePlanSkuName": {
+      "type": "string",
+      "defaultValue": "F1",
+      "allowedValues": [
+        "F1"
+      ],
+      "metadata": {
+        "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+      }
+    }
+  },
+  "variables": {
+    "appHostingPlanNameVar": "[concat(parameters('appServicePlanName'),'-apps')]"
+  },
+  "resources": [
+    {
+      "name": "[variables('appHostingPlanNameVar')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-08-01",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "dependsOn": [],
+      "tags": {
+        "displayName": "appServicePlan"
+      },
+      "properties": {
+        "name": "[variables('appHostingPlanNameVar')]",
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "name": "[parameters('appServiceName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-08-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('appHostingPlanNameVar'))]"
+      ],
+      "tags": {
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('appHostingPlanNameVar')))]": "Resource",
+        "displayName": "webApp"
+      },
+      "properties": {
+        "name": "[parameters('appServiceName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appHostingPlanNameVar'))]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2021-02-01",
+          "type": "extensions",
+          "name": "zipdeploy",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', parameters('appServiceName'))]"
+          ],
+          "properties": {
+            "packageUri": "https://github.com/rcl-identity/RCL.Core.Identity.SelfAssertion/releases/download/V7.0.0/SelfAssertion.zip"
+          }
+        },
+        {
+          "name": "appsettings",
+          "type": "config",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', parameters('appServiceName'))]"
+          ],
+          "tags": {
+            "displayName": "appsettings"
+          },
+          "properties": {
+            "AzureAd:Instance": "--todo--",
+            "AzureAd:Domain": "--todo--",
+            "AzureAd:TenantId": "--todo--",
+            "AzureAd:ClientId": "--todo--",
+            "AzureAd:ClientSecret": "--todo--",
+            "AzureAd:CallbackPath": "/signin-oidc",
+            "AzureAd:SignedOutCallbackPath": "/signout-callback-oidc",
+            "AzureAd:SignUpSignInPolicyId": "--todo--",
+            "AzureAd:EditProfilePolicyId": "--todo--"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": {}
+}
